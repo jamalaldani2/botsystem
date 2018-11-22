@@ -12,6 +12,43 @@ client.user.setGame(`pro wolf system`,"http://twitch.tv/pro wolf system")
 client.user.setStatus("dnd")
 });
 
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const prefix = '.'
+ 
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+client.user.setGame(`pro wolf system`,"http://twitch.tv/S-F")
+  console.log('')
+  console.log('')
+  console.log('╔[═════════════════════════════════════════════════════════════════]╗')
+  console.log(`[Start] ${new Date()}`);
+  console.log('╚[═════════════════════════════════════════════════════════════════]╝')
+  console.log('')
+  console.log('╔[════════════════════════════════════]╗');
+  console.log(`Logged in as * [ " ${client.user.username} " ]`);
+  console.log('')
+  console.log('Informations :')
+  console.log('')
+  console.log(`servers! [ " ${client.guilds.size} " ]`);
+  console.log(`Users! [ " ${client.users.size} " ]`);
+  console.log(`channels! [ " ${client.channels.size} " ]`);
+  console.log('╚[════════════════════════════════════]╝')
+  console.log('')
+  console.log('╔[════════════]╗')
+  console.log(' Bot Is Online')
+  console.log('╚[════════════]╝')
+  console.log('')
+  console.log('')
+});
+ 
+client.login(process.env.BOT_TOKEN);// لا تغير فيها شيء
+ 
+ 
+ 
+ 
+ 
+ 
 client.on("message", async message => {
         if(!message.channel.guild) return;
  var prefix= "+";
@@ -46,7 +83,7 @@ client.on("message", async message => {
  
       }
     });
-
+ 
 client.on('message', function(message) {
     if (message.content == "+clear") {
         if (message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -56,12 +93,12 @@ client.on('message', function(message) {
                 }, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})
         }
     }
-
+ 
 });
-	
+   
   client.on('message', message => {
     if (message.content.startsWith("+link")) {
-
+ 
   message.channel.createInvite({
         thing: true,
         maxUses: 25,
@@ -70,53 +107,53 @@ client.on('message', function(message) {
       message.author.sendMessage(invite.url)
     )
   message.channel.send("**تم ارسال الرابط برسالة خاصة**")
-
+ 
 message.author.send(`**مدة الرابط : يـوم
 دد استخدامات الرابط : 25**`)
-
+ 
     }
 });
-
-
+ 
+ 
 client.on('message', message => {
-
+ 
     if (message.content === "+mc") {
                         if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
-
+ 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
-
+ 
            }).then(() => {
                message.reply("تم تقفيل الشات ? ")
            });
              }
 if (message.content === "+umc") {
     if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
-
+ 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: true
-
+ 
            }).then(() => {
                message.reply("تم فتح الشات?")
            });
              }
-
-
-
+ 
+ 
+ 
 });
-
+ 
 client.on('message', message => {
 const prefix = "+";
   if (message.author.kick) return;
   if (!message.content.startsWith(prefix)) return;
-
+ 
   let command = message.content.split(" ")[0];
   command = command.slice(prefix.length);
-
+ 
   let args = message.content.split(" ").slice(1);
-
+ 
   if (command == "kick") {
                if(!message.channel.guild) return;
          
@@ -124,14 +161,14 @@ const prefix = "+";
   if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("I Don't Have KICK_Members Permission");
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
-
+ 
   if (message.mentions.users.size < 1) return message.reply("منشن شخص");
   if(!reason) return message.reply ("اكتب سبب الطرد");
   if (!message.guild.member(user)
   .bannable) return message.reply("لايمكنني طرد شخص اعلى من رتبتي");
-
+ 
   message.guild.member(user).kick(7, user);
-
+ 
   const banembed = new Discord.RichEmbed()
   .setAuthor('Kicked !', user.displayAvatarURL)
   .setColor("RANDOM")
@@ -142,35 +179,35 @@ const prefix = "+";
   client.channels.get("492086928397565952").send({embed : banembed})
 }
 });
-
+ 
   client.on('message', message => {
   if (message.author.codes) return;
   if (!message.content.startsWith(prefix)) return;
-
+ 
   let command = message.content.split(" ")[0];
   command = command.slice(prefix.length);
-
+ 
   let args = message.content.split(" ").slice(1);
-
+ 
   if (command == "ban") {
                if(!message.channel.guild) return message.reply('** This command only for servers**');
          
   if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**انت لا تملك الصلاحيات المطلوبه**");
   if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
   let user = message.mentions.users.first();
-  
+ 
   if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
   if (!message.guild.member(user)
   .bannable) return message.reply("**يجب ان تكون رتبة البوت اعلي من رتبه الشخص المراد تبنيدة**");
-
-
+ 
+ 
   message.guild.member(user).ban(7, user);
-
+ 
 message.channel.send(`**baneed from this server**`)
-
+ 
 }
 });
-
+ 
 client.on('message', async message => {
   let args = message.content.split(" ");
   if(message.content.startsWith(prefix + "mute")) {
@@ -288,7 +325,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
   }
  
 });
-
+ 
     client.on('message', message => {
         var prefix = "+";
         if (message.author.bot) return;
@@ -309,7 +346,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
       });
 client.on('message', message => {
     var prefix = "+";
-    
+   
         if (message.author.id === client.user.id) return;
         if (message.guild) {
        let embed = new Discord.RichEmbed()
@@ -332,7 +369,7 @@ client.on('message', message => {
             return;
         }
     });
-
+ 
 client.on('message', async message => {
     var command = message.content.toLowerCase().split(" ")[0];
     var prefix = '!!';// Alpha Codes
@@ -443,7 +480,6 @@ client.on('message', async message => {
         })
     }
 });
-
 
 
 
