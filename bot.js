@@ -290,7 +290,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 });
 
     client.on('message', message => {
-        var prefix = "البريفكس";
+        var prefix = "+";
         if (message.author.bot) return;
         if (!message.content.startsWith(prefix)) return;
      
