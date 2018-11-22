@@ -291,7 +291,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
-    var prefix = '$' //بريفكس البوت
+    var prefix = '+' //بريفكس البوت
   var time = moment().format('Do MMMM YYYY , hh:mm');
   var room;
   var title;
